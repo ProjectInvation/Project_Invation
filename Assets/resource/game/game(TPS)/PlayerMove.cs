@@ -3,10 +3,12 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour {
 	private Vector3 pos;
-	private Vector3 rot;
+	private Quaternion rot;
 	private Vector3 Front;
 	private Vector3 Up;
 	private Vector3 Right;
+	private GameObject MainCamera;
+
 
 	// Use this for initialization
 	void Start () {
@@ -14,14 +16,23 @@ public class PlayerMove : MonoBehaviour {
 		pos.y = 1.0f;
 		pos.z = 0.0f;
 
+		rot.x = 0.0f;
+		rot.y = 0.0f;
+		rot.z = 0.0f;
+		rot.w = 1.0f;
+
 		this.transform.position = pos;
+		MainCamera = GameObject.Find ("Main Camera");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Front = this.transform.forward;
+		Front = MainCamera.transform.forward;
 		Up = this.transform.up;
-		Right = this.transform.right;
+		Right = MainCamera.transform.right;
+
+		Front.y = 0;
+		Right.y = 0;
 
 		//AllVector is Normalize
 		Front.Normalize();
@@ -31,19 +42,21 @@ public class PlayerMove : MonoBehaviour {
 		if (Input.GetKey (KeyCode.W)) 
 		{
 			pos = pos + (Front / 5);
+			this.transform.forward = Front;
 		}else if(Input.GetKey(KeyCode.S)){
 			pos = pos + -(Front / 5);
+			this.transform.forward = -Front;
 		}
 
 		if (Input.GetKey (KeyCode.D)) {
-			rot.y++;
+			pos = pos + (Right / 5);
+			this.transform.forward = Right;
 		} else if (Input.GetKey (KeyCode.A)) {
-			rot.y--;
-		} else {
-			rot.y = 0;
+			pos = pos + -(Right / 5);
+			this.transform.forward = -Right;
+
 		}
 
-		this.transform.Rotate(rot);
 		this.transform.position = pos;
 	}
 }
