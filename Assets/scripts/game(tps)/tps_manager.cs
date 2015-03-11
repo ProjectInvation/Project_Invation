@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class fix_game_manager : MonoBehaviour {
+public class tps_manager : MonoBehaviour {
 
 	// Use this for initialization
-	void Start ()
-	{
-		
+	void Start () {
+	
 	}
 	
 	// Update is called once per frame
@@ -16,6 +15,6 @@ public class fix_game_manager : MonoBehaviour {
 		{
 			//Scene Change Fix
 			Application.LoadLevel("title");
-		}
+		}	
 	}
 }
