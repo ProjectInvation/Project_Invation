@@ -31,4 +31,8 @@ Thumbs.db
 # -------------[ Build ]------------------------ #
 *.html
 *.unity3d
+<<<<<<< HEAD
 Assets/resource/title/Textures/tps_logo - コピー.png
+=======
+Assets/resource/Test.txt.meta
+>>>>>>> d9609bb7c98ee58d6eb9e1e50b937150301624b3
