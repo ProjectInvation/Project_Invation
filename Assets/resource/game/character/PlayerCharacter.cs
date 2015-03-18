@@ -26,19 +26,19 @@ public class PlayerCharacter : MonoBehaviour {
 		PlayerFront.y = 0;
 
 		//Input key move and rot 
-		if (Input.GetKey (KeyCode.W)) {
+		if (Input.GetKey (KeyCode.W) || Input.GetAxisRaw("Vertical") > 0) {
 			PlayerPosDest += (PlayerFront / MoveSpeed);
-		} else if (Input.GetKey (KeyCode.S)) 
+		} else if (Input.GetKey (KeyCode.S) || Input.GetAxisRaw("Vertical") < 0) 
 		{
 			PlayerPosDest += -(PlayerFront / MoveSpeed);
 		}
 
-		if (Input.GetKey (KeyCode.A)) {
+		if (Input.GetKey (KeyCode.A) || Input.GetAxisRaw("Horizontal") < 0) {
 			PlayerRot.y -= 0.1f;
 			if (PlayerRot.y <= -this.Maxspeed) {
 				PlayerRot.y = -this.Maxspeed;
 			}
-		} else if (Input.GetKey (KeyCode.D)) {
+		} else if (Input.GetKey (KeyCode.D) || Input.GetAxisRaw("Horizontal") > 0) {
 			PlayerRot.y += 0.1f;
 			if (PlayerRot.y >= this.Maxspeed) {
 				PlayerRot.y = this.Maxspeed;
@@ -52,12 +52,12 @@ public class PlayerCharacter : MonoBehaviour {
 		this.transform.Rotate (PlayerRot);
 
 		//Atack style Move
-		if (Input.GetMouseButtonDown (1)) {
+		if (Input.GetMouseButtonDown (1) || Input.GetButton("L1")) {
 			//Close Axis set
 			Axis = Enemy.transform.position - this.transform.position;
 			Axis.y = 0;
 		}
-		if(Input.GetMouseButton(1)){
+		if(Input.GetMouseButton(1)|| Input.GetButton("L1")){
 			if(PlayerRot.y == 0){
 				this.transform.forward += (Axis - this.transform.forward) * 0.2f;
 			}
