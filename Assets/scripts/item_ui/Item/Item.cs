@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Item : MonoBehaviour
 {
-	int thisItemID=0;
+	public string thisItemID="item_none";
 	// Use this for initialization
 	void Start ()
 	{
-	
+
 	}
 	
 	// Update is called once per frame
