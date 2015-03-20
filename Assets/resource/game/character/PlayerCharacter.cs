@@ -13,7 +13,7 @@ public class PlayerCharacter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//InitSet
+		//InitSet!
 		PlayerPosDest = this.transform.position;
 		Enemy = GameObject.Find ("EnemyObject");
 	}
