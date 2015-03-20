@@ -24,13 +24,16 @@ public class PlayerCharacter : MonoBehaviour {
 		Vector3 PlayerFront = this.transform.forward;
 		PlayerFront.Normalize();
 		PlayerFront.y = 0;
+		PlayerFront.x = 0;
 
 		//Input key move and rot 
 		if (Input.GetKey (KeyCode.W) || Input.GetAxisRaw("Vertical") > 0) {
-			PlayerPosDest += (PlayerFront / MoveSpeed);
+			//PlayerPosDest += (PlayerFront / MoveSpeed);
+			this.transform.Translate(0,0,0.03f);
 		} else if (Input.GetKey (KeyCode.S) || Input.GetAxisRaw("Vertical") < 0) 
 		{
-			PlayerPosDest += -(PlayerFront / MoveSpeed);
+			//PlayerPosDest += -(PlayerFront / MoveSpeed);
+			this.transform.Translate(0,0,-0.03f);
 		}
 
 		if (Input.GetKey (KeyCode.A) || Input.GetAxisRaw("Horizontal") < 0) {
@@ -48,7 +51,7 @@ public class PlayerCharacter : MonoBehaviour {
 		}
 
 		//Inertia Move 
-		this.transform.position += (PlayerPosDest - this.transform.position) * 0.2f;
+		//this.transform.Translate((PlayerPosDest - this.transform.position) * 0.2f);
 		this.transform.Rotate (PlayerRot);
 
 		//Atack style Move
