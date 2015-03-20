@@ -11,7 +11,7 @@ public class EnemyCharacter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Axis get
+		//Axis gets!
 		Vector3 Axis = Player.transform.position - this.transform.position;
 
 		//Move if it's the close distance
