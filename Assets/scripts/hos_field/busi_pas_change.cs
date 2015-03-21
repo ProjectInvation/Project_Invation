@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class pas_kit_Csene_change : MonoBehaviour {
+public class busi_pas_change : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,7 @@ public class pas_kit_Csene_change : MonoBehaviour {
 	{
 		if(coll.tag==("Player"))
 		{
-			Application.LoadLevel("kitchen_field");
+			Application.LoadLevel("passege_field");
 		}
 
 	}
