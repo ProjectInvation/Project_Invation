@@ -16,8 +16,8 @@ public class field_kitchen : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		cameraObjStart=GameObject.Find("Kitchen Start Camera");
-		cameraObjEnd=GameObject.Find("Kitchen End Camera");
+		cameraObjStart=GameObject.Find("Kitchen End Camera");
+		cameraObjEnd=GameObject.Find("Kitchen Start Camera");
 		
 		cameraObjStart.SetActive(true);
 		cameraObjEnd.SetActive(false);
