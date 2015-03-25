@@ -4,9 +4,10 @@ using System.Collections;
 public class ItemManager : MonoBehaviour
 {
 	const int ITEM_MAX=6;
-	const string ITEM_ID_NONE="item_none";
+	const int ITEM_ID_NONE=-1;
+	const int ITEM_ID_ONE =0;
 
-	private string[] HaveItemList= new string[ITEM_MAX]{ITEM_ID_NONE,ITEM_ID_NONE,ITEM_ID_NONE,ITEM_ID_NONE,ITEM_ID_NONE,ITEM_ID_NONE};
+	private int[] HaveItemList= new int[ITEM_MAX]{ITEM_ID_NONE,ITEM_ID_NONE,ITEM_ID_NONE,ITEM_ID_NONE,ITEM_ID_NONE,ITEM_ID_NONE};
 	private int HaveItem=0;
 
 	// Use this for initialization
@@ -21,7 +22,7 @@ public class ItemManager : MonoBehaviour
 	
 	}
 
-	public bool AddItem(string ItemID)
+	public bool AddItem(int ItemID)
 	{
 		if(HaveItem<=ITEM_MAX-1)
 		{
@@ -31,6 +32,7 @@ public class ItemManager : MonoBehaviour
 				{
 					HaveItemList[i]=ItemID;
 					return true;
+					break;
 				}
 			}
 		}
@@ -41,7 +43,14 @@ public class ItemManager : MonoBehaviour
 	{
 		for(int i=0;i<ITEM_MAX;i++)
 		{
-			GUI.Label (new Rect (0,   i*30, 100, 30), HaveItemList[i]);
+			if(HaveItemList[i]!=ITEM_ID_NONE)
+			{
+				GUI.Label (new Rect (0,   i*30, 100, 30), "HAVE");
+			}
+			else
+			{
+				GUI.Label (new Rect (0,   i*30, 100, 30), "NONE");
+			}
 		}
 	}
 }
