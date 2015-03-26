@@ -12,9 +12,8 @@ public class EnemyCharacter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Players = new GameObject[ObjNum];
-
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		for (int i = 0; i < ObjNum; i++) {
