@@ -28,7 +28,7 @@ public class PlayerCharacter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		for (int i = 0; i < ObjNum; i++) {
-			Enemys[i] = GameObject.Find("EnemyObject_" + (i+1));
+			Enemys[i] = GameObject.Find("Enemy_" + (i+1));
 		}
 
 		//FrontVector is set this forward
