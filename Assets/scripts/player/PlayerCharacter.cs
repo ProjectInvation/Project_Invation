@@ -15,6 +15,10 @@ public class PlayerCharacter : MonoBehaviour {
 	private int point;
 	private int FirstPoint = 1000;
 
+	private int Count = 0;
+	private int TurnCount = 6;
+	private float TurnRot;
+
 	private GameObject [] Enemys;				//Enemy of GameObjects
 
 	// Use this for initialization
@@ -23,6 +27,7 @@ public class PlayerCharacter : MonoBehaviour {
 		PlayerPosDest = this.transform.position;
 		Enemys = new GameObject[ObjNum];
 		point = FirstPoint;
+		TurnRot = 180 / TurnCount;
 	}
 	
 	// Update is called once per frame
@@ -36,12 +41,12 @@ public class PlayerCharacter : MonoBehaviour {
 		PlayerFront.Normalize();
 		PlayerFront.y = 0;
 		PlayerFront.x = 0;
-
+		
 		//Input key move and rot 
-		if (Input.GetKey (KeyCode.W) || Input.GetAxisRaw("Vertical") > 0) {
+		if (Input.GetKey (KeyCode.W) || Input.GetAxisRaw("Vertical") < 0) {
 			//PlayerPosDest += (PlayerFront / MoveSpeed);
 			this.transform.Translate(0,0,MoveSpeed);
-		} else if (Input.GetKey (KeyCode.S) || Input.GetAxisRaw("Vertical") < 0) 
+		} else if (Input.GetKey (KeyCode.S) || Input.GetAxisRaw("Vertical") > 0) 
 		{
 			//PlayerPosDest += -(PlayerFront / MoveSpeed);
 			this.transform.Translate(0,0,-MoveSpeed);
@@ -60,6 +65,16 @@ public class PlayerCharacter : MonoBehaviour {
 		} else {
 			PlayerRot.y = 0;
 		}
+
+		//Quick turn
+		if (Input.GetKeyDown (KeyCode.Q) || Input.GetButtonDown("L2")) {
+			Count = TurnCount;
+		}
+		if (Count > 0) {
+			Count--;
+			PlayerRot.y += TurnRot;
+		}
+
 		//Inertia Move 
 		//this.transform.Translate((PlayerPosDest - this.transform.position) * 0.2f);
 		this.transform.Rotate (PlayerRot);
