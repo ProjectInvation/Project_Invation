@@ -17,6 +17,7 @@ public class ItemPlayerMove : MonoBehaviour
 		//Move This Object
 		Move();
 
+
 		//Renderer Off
 		//GetComponent<Renderer>().enabled = false;
 	}
