@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
 	{
 		if(coll.collider.tag=="Player")
 		{
-			if(GameObject.Find("ItemManager").GetComponent<ItemManager>().AddItem(thisItemID))
+			if(GameObject.Find("ItemManager").GetComponent<ItemManager>().AddItem(this.tag));
 			{
 				Destroy(this.gameObject);
 			}
