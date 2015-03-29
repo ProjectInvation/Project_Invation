@@ -3,7 +3,8 @@ using System.Collections;
 
 public class HandleBullet : MonoBehaviour 
 {
-	private float spd=2.1f;
+	public float Movespd=2.1f;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -13,12 +14,12 @@ public class HandleBullet : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		this.transform.Translate(0,0,spd);
+		this.transform.Translate(0,0,Movespd);
 	}
 
 	void SetSpd(float f)
 	{
-		spd=f;
+		Movespd=f;
 	}
 
 	void OnTriggerEnter(Collider coll)

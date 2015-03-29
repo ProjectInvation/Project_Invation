@@ -4,7 +4,7 @@ using System.Collections;
 public class RifleScript : MonoBehaviour
 {
 	private bool canFire=false;
-	
+	private bool nowDis=false;
 	private bool isUse=false;
 	
 	private float coolDownCount=1.0f;
@@ -77,6 +77,18 @@ public class RifleScript : MonoBehaviour
 		canFire=true;
 	}
 
+	IEnumerator ReloadDisplay()
+	{
+		if(!nowDis)
+		{
+			nowDis=true;
+			GameObject.Find("GameManager").GetComponent<DisplayTextManager>().SetDisplaytext("Reload!!");
+			yield return new WaitForSeconds(1);
+			GameObject.Find("GameManager").GetComponent<DisplayTextManager>().SetDisplaytext("");
+			nowDis=false;
+		}
+	}
+
 	void Fire()
 	{
 		if(LoadedBullet>0)
@@ -85,6 +97,11 @@ public class RifleScript : MonoBehaviour
 			Instantiate (prefab, GameObject.Find("BulletStart").transform.position, GameObject.Find("BulletStart").transform.rotation);
 			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 			StartCoroutine("coolDownFire");
+		}
+
+		else
+		{
+			StartCoroutine("ReloadDisplay");
 		}
 	}
 
