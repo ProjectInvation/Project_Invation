@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< .merge_file_a05628
 guid: 1d0757ed0d05bb248b5c04a7d4d555a0
 timeCreated: 1427501845
+=======
+guid: 607a1f9553956524aa5b01f899672475
+timeCreated: 1427196861
+>>>>>>> .merge_file_a06548
 licenseType: Free
 DefaultImporter:
   userData: 
