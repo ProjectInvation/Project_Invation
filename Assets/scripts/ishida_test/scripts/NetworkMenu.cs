@@ -7,10 +7,6 @@ public class NetworkMenu : MonoBehaviour
 {
 	public GameObject prefab;
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> 59905e52d908097afb910f81a021df0d75e7fade
 	string connection_ip;
 	public int port_number = 8632;
 	
@@ -26,7 +22,6 @@ public class NetworkMenu : MonoBehaviour
 		}
 	}
 	
-<<<<<<< HEAD
 	// player create
 	private void CreatePlayer()
 	{
@@ -47,23 +42,11 @@ public class NetworkMenu : MonoBehaviour
 		Debug.Log ("Connected to server");
 		connected = true;
 		CreatePlayer ();
-=======
-	private void OnConnectedToServer()
-	{
-		// A client has jast connected
-		Network.Instantiate (prefab,  new Vector3 (0,5,0), Quaternion.identity, 0);
-		connected = true;
->>>>>>> 59905e52d908097afb910f81a021df0d75e7fade
 	}
 	
 	private void OnPlayerConnected(NetworkPlayer player)
 	{
-<<<<<<< HEAD
 		Debug.Log ("Connected from" + player.ipAddress + ":" + player.port);
-=======
-		// The server has initialzed
-		Network.Instantiate (prefab, new Vector3 (0, 5, 0), Quaternion.identity, 0);
->>>>>>> 59905e52d908097afb910f81a021df0d75e7fade
 		connected = true;
 	}
 	
@@ -103,10 +86,7 @@ public class NetworkMenu : MonoBehaviour
 			
 			if (GUILayout.Button ("Connect")) {
 				Network.Connect (connection_ip, port_number);
-<<<<<<< HEAD
 				CreatePlayer ();
-=======
->>>>>>> 59905e52d908097afb910f81a021df0d75e7fade
 			}
 			if (GUILayout.Button ("Host")) {
 				Network.InitializeServer (4, port_number, true);
@@ -114,12 +94,11 @@ public class NetworkMenu : MonoBehaviour
 		} else {
 			GUILayout.Label ("Connections: " + Network.connections.Length.ToString ());
 			if (GUILayout.Button ("Disconnect")) {
-<<<<<<< HEAD
 				Network.Destroy(GameObject.FindWithTag("Player"));
-=======
->>>>>>> 59905e52d908097afb910f81a021df0d75e7fade
 				Network.Disconnect();
 			}
 		}
 	}
 }
+
+
