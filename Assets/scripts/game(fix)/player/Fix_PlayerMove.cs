@@ -20,23 +20,29 @@ public class Fix_PlayerMove : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Player=GameObject.Find("Player_root");
-		angle=0;
+		if (GetComponent<NetworkView> ().isMine) 
+		{
+			Player = GameObject.Find ("Player_root");
+			angle = 0;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		//Player Move
-		PlayerMove();
-
-		//Gravity
-		if(isGavity)
+		if (GetComponent<NetworkView> ().isMine)
 		{
-			Player.transform.Translate(0,gravity,0);
+			//Player Move
+			GetComponent<NetworkView> ().RPC ("PlayerMove", RPCMode.All);
+
+			//Gravity
+			if (isGavity) {
+				Player.transform.Translate (0, gravity, 0);
+			}
 		}
 	}
 
+	[RPC]
 	void PlayerMove()
 	{
 		if(Input.GetKey(KeyCode.W))
