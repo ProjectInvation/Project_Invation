@@ -94,11 +94,10 @@ public class NetworkMenu : MonoBehaviour
 		} else {
 			GUILayout.Label ("Connections: " + Network.connections.Length.ToString ());
 			if (GUILayout.Button ("Disconnect")) {
-				Network.Destroy(GameObject.FindWithTag("Player"));
+				Network.Destroy(GameObject.Find("PlayerPrefab(Clone)").gameObject);
 				Network.Disconnect();
 			}
 		}
 	}
 }
-
 
