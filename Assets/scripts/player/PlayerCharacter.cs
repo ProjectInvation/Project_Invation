@@ -87,7 +87,7 @@ public class PlayerCharacter : MonoBehaviour {
 				count++;
 				continue;
 			}
-			if(i == 0)
+			if(i == count)
 			{
 				Axis = Enemys[i].transform.position - this.transform.position;
 			}else{
