@@ -45,9 +45,9 @@ public class RifleScript : MonoBehaviour
 	{
 		isUse=true;
 		canFire=true;
-		GameObject.Find("GameManager").GetComponent<WeponUiManager>().ChangeWeponIcon("rifle");
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
+		GameObject.Find("UIManager").GetComponent<WeponUiManager>().ChangeWeponIcon("rifle");
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 	}
 	
 	public void RemoveSet()
@@ -61,11 +61,11 @@ public class RifleScript : MonoBehaviour
 		if(LoadedBullet!=LoadedMax&&CarryingBullet>0)
 		{
 			canFire=false;
-			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetBulletReload();
+			GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetBulletReload();
 			yield return new WaitForSeconds(coolDownReload);
 			Reload();
-			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
-			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
+			GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
+			GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 			canFire=true;
 		}
 	}
@@ -82,9 +82,9 @@ public class RifleScript : MonoBehaviour
 		if(!nowDis)
 		{
 			nowDis=true;
-			GameObject.Find("GameManager").GetComponent<DisplayTextManager>().SetDisplaytext("Reload!!");
+			GameObject.Find("UIManager").GetComponent<DisplayTextManager>().SetDisplaytext("Reload!!");
 			yield return new WaitForSeconds(1);
-			GameObject.Find("GameManager").GetComponent<DisplayTextManager>().SetDisplaytext("");
+			GameObject.Find("UIManager").GetComponent<DisplayTextManager>().SetDisplaytext("");
 			nowDis=false;
 		}
 	}
@@ -95,7 +95,7 @@ public class RifleScript : MonoBehaviour
 		{
 			LoadedBullet-=1;
 			Instantiate (prefab, GameObject.Find("BulletStart").transform.position, GameObject.Find("BulletStart").transform.rotation);
-			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
+			GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 			StartCoroutine("coolDownFire");
 		}
 
@@ -124,8 +124,8 @@ public class RifleScript : MonoBehaviour
 			}
 		}
 
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 
 	}
 	
