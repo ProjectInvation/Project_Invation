@@ -67,7 +67,7 @@ public class PlayerCharacter : MonoBehaviour {
 		}
 
 		//Quick turn
-		if (Input.GetKeyDown (KeyCode.Q) || Input.GetButtonDown("L2")) {
+		if (Input.GetKeyDown (KeyCode.Q) /*|| Input.GetButtonDown("L2")*/) {
 			Count = TurnCount;
 		}
 		if (Count > 0) {
