@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChangeScene : MonoBehaviour {
+public class ChangeScene2 : MonoBehaviour {
 	
 	int		count = 0;
 	bool	delete_object = false;
@@ -52,3 +52,4 @@ public class ChangeScene : MonoBehaviour {
 			delete_object = false;
 	}
 }
+
