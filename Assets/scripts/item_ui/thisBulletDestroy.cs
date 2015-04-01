@@ -20,7 +20,7 @@ public class thisBulletDestroy : MonoBehaviour
 	{
 		if(coll.tag=="Bullet")
 		{
-			GameObject.Find("GameManager").GetComponent<PointManager>().HandleScore(3);
+			GameObject.Find("UIManager").GetComponent<PointManager>().HandleScore(3);
 			Destroy(this.gameObject);
 		}
 	}

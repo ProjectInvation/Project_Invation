@@ -47,9 +47,9 @@ public class HandgunScript : MonoBehaviour
 	{
 		isUse=true;
 		canFire=true;
-		GameObject.Find("GameManager").GetComponent<WeponUiManager>().ChangeWeponIcon("handgun");
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
+		GameObject.Find("UIManager").GetComponent<WeponUiManager>().ChangeWeponIcon("handgun");
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 	}
 	
 	public void RemoveSet()
@@ -63,11 +63,11 @@ public class HandgunScript : MonoBehaviour
 		if(LoadedBullet!=LoadedMax&&CarryingBullet>0)
 		{
 			canFire=false;
-			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetBulletReload();
+			GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetBulletReload();
 			yield return new WaitForSeconds(coolDownReload);
 			Reload();
-			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
-			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
+			GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
+			GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 			canFire=true;
 		}
 	}
@@ -85,7 +85,7 @@ public class HandgunScript : MonoBehaviour
 		{
 			LoadedBullet-=1;
 			Instantiate (prefab, GameObject.Find("BulletStart").transform.position, GameObject.Find("BulletStart").transform.rotation);
-			GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
+			GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 			StartCoroutine("coolDownFire");
 		}
 		else
@@ -113,8 +113,8 @@ public class HandgunScript : MonoBehaviour
 			}
 		}
 		
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetCarryingBullets(CarryingBullet);
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetLoadedBullet(LoadedBullet);
 		
 	}
 
@@ -123,9 +123,9 @@ public class HandgunScript : MonoBehaviour
 		if(!nowDis)
 		{
 			nowDis=true;
-			GameObject.Find("GameManager").GetComponent<DisplayTextManager>().SetDisplaytext("Reload!!");
+			GameObject.Find("UIManager").GetComponent<DisplayTextManager>().SetDisplaytext("Reload!!");
 			yield return new WaitForSeconds(1);
-			GameObject.Find("GameManager").GetComponent<DisplayTextManager>().SetDisplaytext("");
+			GameObject.Find("UIManager").GetComponent<DisplayTextManager>().SetDisplaytext("");
 			nowDis=false;
 		}
 	}

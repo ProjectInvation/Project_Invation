@@ -23,8 +23,8 @@ public class BatScript : MonoBehaviour
 	public void ThisWeponSet()
 	{
 		isUse=true;
-		GameObject.Find("GameManager").GetComponent<WeponUiManager>().ChangeWeponIcon("bat");
-		GameObject.Find("GameManager").GetComponent<BulletUiManager>().SetBulletNone();
+		GameObject.Find("UIManager").GetComponent<WeponUiManager>().ChangeWeponIcon("bat");
+		GameObject.Find("UIManager").GetComponent<BulletUiManager>().SetBulletNone();
 	}
 	
 	public void RemoveSet()
