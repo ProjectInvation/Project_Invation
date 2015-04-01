@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChangeScene2 : MonoBehaviour {
+public class ChangeScene : MonoBehaviour {
 	
 	int		count = 0;
 	bool	delete_object = false;
@@ -31,7 +31,7 @@ public class ChangeScene2 : MonoBehaviour {
 	private void OnDestroy()
 	{
 		Network.Disconnect();
-		GameObject.DestroyObject(GameObject.FindWithTag("NetworkObject"));
+		GameObject.DestroyObject(GameObject.Find("NetworkMenu"));
 	}
 	
 	[RPC]
@@ -41,7 +41,7 @@ public class ChangeScene2 : MonoBehaviour {
 	
 	[RPC]
 	public void PlayerDelete()
-	{Network.Destroy(GameObject.FindWithTag("Player"));}
+	{Network.Destroy(GameObject.Find("PlayerPrefab(clone)"));}
 	
 	[RPC]
 	public void FlagChange()

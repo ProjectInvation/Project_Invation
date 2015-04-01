@@ -16,6 +16,12 @@ public class EnemyCharacter : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		GetComponent<NetworkView> ().RPC ("EnemyRpc", RPCMode.All);
+	}
+
+	[RPC]
+	public void EnemyRpc()
+	{
 		for (int i = 0; i < ObjNum; i++) {
 			Players[i] = GameObject.Find("Player_" + (i+1));
 		}
@@ -43,7 +49,7 @@ public class EnemyCharacter : MonoBehaviour {
 		if (Axis.magnitude <= 10) {
 			Axis.y = 0;
 			Axis.Normalize();
-
+			
 			this.transform.forward = Axis;
 			this.transform.Translate(0,0,MoveSpeed);
 		}
