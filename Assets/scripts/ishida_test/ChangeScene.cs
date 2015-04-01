@@ -31,17 +31,17 @@ public class ChangeScene : MonoBehaviour {
 	private void OnDestroy()
 	{
 		Network.Disconnect();
-		GameObject.DestroyObject(GameObject.Find("NetworkMenu"));
+		GameObject.DestroyObject(GameObject.Find("NetworkMenu").gameObject);
 	}
 	
 	[RPC]
 	public void SceneJump()
-	{Application.LoadLevel ("network");}
+	{Application.LoadLevel ("ishida_test");}
 	
 	
 	[RPC]
 	public void PlayerDelete()
-	{Network.Destroy(GameObject.Find("PlayerPrefab(clone)"));}
+	{Network.Destroy(GameObject.Find("PlayerPrefab(Clone)").gameObject);}
 	
 	[RPC]
 	public void FlagChange()
