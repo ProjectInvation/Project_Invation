@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ChangeScene : MonoBehaviour {
 	
-	int		count = 0;
-	bool	delete_object = false;
+	private int		count;
+	private bool	delete_object;
 	//public char scene = null;
 	// Use this for initialization
 	void Start () {
@@ -21,7 +21,7 @@ public class ChangeScene : MonoBehaviour {
 		
 		if ((Input.GetKeyDown (KeyCode.C)) && (delete_object == false)) {
 			GetComponent<NetworkView> ().RPC ("PlayerDelete", RPCMode.All);
-			GetComponent<NetworkView> ().RPC ("FlagChange", RPCMode.All);
+			GetComponent<NetworkView> ().RPC ("FlagTrue", RPCMode.All);
 		}
 		
 		if(delete_object)
@@ -37,19 +37,15 @@ public class ChangeScene : MonoBehaviour {
 	[RPC]
 	public void SceneJump()
 	{Application.LoadLevel ("ishida_test");}
-	
+
 	
 	[RPC]
 	public void PlayerDelete()
 	{Network.Destroy(GameObject.Find("PlayerPrefab(Clone)").gameObject);}
 	
 	[RPC]
-	public void FlagChange()
-	{
-		if (delete_object != true)
-			delete_object = true;
-		else
-			delete_object = false;
-	}
+	public void FlagTrue()
+	{delete_object = true;}
+
 }
 
