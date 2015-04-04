@@ -15,9 +15,21 @@ public class TextOut : MonoBehaviour {
 	public static int now_disp_mode;
 	public static int NowDispMode {
 		get{ return now_disp_mode;}
-		set
-		{ now_disp_mode = value;}
+		set{ now_disp_mode = value;}
 	}
+
+	public static string connection_ip;
+	public static string ConnectionIp {
+		get{ return connection_ip;}
+		set{ connection_ip = value;}
+	}
+
+	public static int port_number;
+	public static int PortNumber {
+		get{ return port_number;}
+		set{ port_number = value;}
+	}
+
 
 	// Use this for initialization
 	void Start ()
@@ -46,15 +58,25 @@ public class TextOut : MonoBehaviour {
 		case DISP_MODE_WAIT:
 			break;
 		case DISP_MODE_HOST:
+			GUILayout.Label ("Connections: " + (Network.connections.Length+1).ToString());
+			GUILayout.Label ("Is Host");
+			GUILayout.Label ("ip addreass :" + connection_ip.ToString());
+			GUILayout.Label ("port :" + port_number.ToString());
 			GUI.Label (new Rect (Screen.width/2-(style.fontSize*str_host.Length)/4,
 			                     Screen.height/2-style.fontSize/2, style.fontSize*str_host.Length, style.fontSize), str_host,style);
-			if (GUI.Button (new Rect (Screen.width/2,Screen.height/2+Screen.height/8, 172, 48), "Disconnect")) 
+			if (GUI.Button (new Rect (Screen.width/2 + Screen.width/8,Screen.height/2+Screen.height/8, 172, 48), "Disconnect")) 
 			{
 				Network.Destroy(GameObject.Find("PlayerPrefab(Clone)").gameObject);
 				Network.Disconnect();
 			}
+			if (GUI.Button (new Rect (Screen.width/2 - Screen.width/4,Screen.height/2+Screen.height/8, 172, 48), "GameStart")) 
+			{
+				Application.LoadLevel("ishida_test_2");
+			}
 			break;
 		case DISP_MODE_CLIENT:
+			GUILayout.Label ("Connections: " + Network.connections.Length.ToString ());
+			GUILayout.Label ("Is Client ");
 			GUI.Label (new Rect (Screen.width/2-(style.fontSize*str_client.Length)/4,
 			                     Screen.height/2-style.fontSize/2, style.fontSize*str_client.Length, style.fontSize), str_client,style);
 			if (GUI.Button (new Rect (Screen.width/2,Screen.height/2+Screen.height/8, 172, 48), "Disconnect")) {

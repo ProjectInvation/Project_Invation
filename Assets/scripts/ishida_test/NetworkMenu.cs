@@ -42,6 +42,8 @@ public class NetworkMenu : MonoBehaviour
 	{
 		// update disp mode
 		TextOut.NowDispMode = now_disp_mode;
+		TextOut.ConnectionIp = connection_ip;
+		TextOut.PortNumber = port_number;
 	}
 
 	// player create
@@ -127,28 +129,28 @@ public class NetworkMenu : MonoBehaviour
 				}
 			}
 			break;
-		case DISP_MODE_HOST:
-			GUILayout.Label ("Server: " + Network.isServer.ToString());
-			GUILayout.Label ("Client: " + Network.isClient.ToString());
-			GUILayout.Label ("Connections: " + Network.connections.Length.ToString ());
-			GUILayout.Label ("Is Host");
-			GUILayout.Label ("ip addreass :" + connection_ip.ToString());
-			GUILayout.Label ("port :" + port_number.ToString());
+		//case DISP_MODE_HOST:
+			//GUILayout.Label ("Server: " + Network.isServer.ToString());
+			//GUILayout.Label ("Client: " + Network.isClient.ToString());
+			//GUILayout.Label ("Connections: " + Network.connections.Length.ToString ()+1);
+			//GUILayout.Label ("Is Host");
+			//GUILayout.Label ("ip addreass :" + connection_ip.ToString());
+			//GUILayout.Label ("port :" + port_number.ToString());
 			//if (GUILayout.Button ("Disconnect")) {
 			//	Network.Destroy(GameObject.Find("PlayerPrefab(Clone)").gameObject);
 			//	Network.Disconnect();
 			//}
-			break;
-		case DISP_MODE_CLIENT:
-			GUILayout.Label ("Server: " + Network.isServer.ToString());
-			GUILayout.Label ("Client: " + Network.isClient.ToString());
-			GUILayout.Label ("Connections: " + Network.connections.Length.ToString ());
-			GUILayout.Label ("Is Client ");
+		//	break;
+	//	case DISP_MODE_CLIENT:
+			//GUILayout.Label ("Server: " + Network.isServer.ToString());
+			//GUILayout.Label ("Client: " + Network.isClient.ToString());
+			//GUILayout.Label ("Connections: " + Network.connections.Length.ToString ());
+			//GUILayout.Label ("Is Client ");
 			//if (GUILayout.Button ("Disconnect")) {
 			//	Network.Destroy(GameObject.Find("PlayerPrefab(Clone)").gameObject);
 			//	Network.Disconnect();
 			//}
-			break;
+		//	break;
 		}
 	}
 }
