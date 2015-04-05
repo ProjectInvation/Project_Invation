@@ -4,11 +4,16 @@ using System.Collections;
 public class ItemPlayerMove : MonoBehaviour
 {
 	public float MoveSpd;
+	public string ThisName;
+
+	private float angle;
+	public float move_spd;
+	public float rot_spd;
 
 	// Use this for initialization
 	void Start ()
 	{
-	
+		angle=0;
 	}
 	
 	// Update is called once per frame
@@ -26,22 +31,24 @@ public class ItemPlayerMove : MonoBehaviour
 	{
 		if(Input.GetKey(KeyCode.W))
 		{
-			GameObject.Find("Player").transform.Translate(0,0,MoveSpd);
+			this.transform.Translate(0,0,move_spd);
 		}
 		
 		if(Input.GetKey(KeyCode.S))
 		{
-			GameObject.Find("Player").transform.Translate(0,0,-MoveSpd);
+			this.transform.Translate(0,0,-move_spd);
 		}
 		
 		if(Input.GetKey(KeyCode.A))
 		{
-			GameObject.Find("Player").transform.Translate(-MoveSpd,0,0);
+			angle-=rot_spd;
+			this.transform.rotation= Quaternion.Euler(0,angle,0);
 		}
 		
 		if(Input.GetKey(KeyCode.D))
 		{
-			GameObject.Find("Player").transform.Translate(MoveSpd,0,0);
+			angle+=rot_spd;
+			this.transform.rotation=Quaternion.Euler(0,angle,0);
 		}
 	}
 }
