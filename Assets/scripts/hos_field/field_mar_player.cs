@@ -40,36 +40,116 @@ public class field_mar_player : MonoBehaviour {
 
 	void OnTriggerExit(Collider collider)
 	{
-		if (collider.tag != ("busi_belt_hit_1") && 
-		    collider.tag != ("busi_belt_hit_2") && 
-		    collider.tag != ("busi_belt_hit_3") && 
-		    collider.tag != ("busi_belt_hit_4") && 
-		    collider.tag != ("busi_belt_hit_5") && 
-		    collider.tag != ("ware_belt_hit_1") && 
-		    collider.tag != ("ware_belt_hit_2") && 
-		    collider.tag != ("ware_belt_hit_3") && 
-		    collider.tag != ("ware_belt_hit_4") && 
-		    collider.tag != ("vip_belt_hit_1") && 
-		    collider.tag != ("vip_belt_hit_2") && 
-		    collider.tag != ("pas_belt_hit_1") && 
-		    collider.tag != ("pas_belt_hit_2") && 
-		    collider.tag != ("pas_belt_hit_3") && 
-		    collider.tag != ("pas_belt_hit_4") && 
-		    collider.tag != ("pas_belt_hit_5") && 
-		    collider.tag != ("pas_belt_hit_6") && 
-		    collider.tag != ("kit_belt_hit_1") && 
-		    collider.tag != ("kit_belt_hit_2"))
+		if(this.name=="Player_"+GameObject.Find("NetworkMenu").GetComponent<NetworkMenu>().PlayerID+"(Clone)")
 		{
-			return;
-		}
-		
-		switch (collider.tag) 
-		{
-		case "busi_belt_hit_2":
+			if (collider.tag != ("busi_belt_hit_1") && 
+			    collider.tag != ("busi_belt_hit_2") && 
+			    collider.tag != ("busi_belt_hit_3") && 
+			    collider.tag != ("busi_belt_hit_4") && 
+			    collider.tag != ("busi_belt_hit_5") && 
+			    collider.tag != ("ware_belt_hit_1") && 
+			    collider.tag != ("ware_belt_hit_2") && 
+			    collider.tag != ("ware_belt_hit_3") && 
+			    collider.tag != ("ware_belt_hit_4") && 
+			    collider.tag != ("vip_belt_hit_1") && 
+			    collider.tag != ("vip_belt_hit_2") && 
+			    collider.tag != ("pas_belt_hit_1") && 
+			    collider.tag != ("pas_belt_hit_2") && 
+			    collider.tag != ("pas_belt_hit_3") && 
+			    collider.tag != ("pas_belt_hit_4") && 
+			    collider.tag != ("pas_belt_hit_5") && 
+			    collider.tag != ("pas_belt_hit_6") && 
+			    collider.tag != ("kit_belt_hit_1") && 
+			    collider.tag != ("kit_belt_hit_2"))
+			{
+				return;
+			}
+			
+			switch (collider.tag) 
+			{
+			case "busi_belt_hit_2":
+				{
+					if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_1)
+					{
+						cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_2;
+					}
+					else
+					{
+						cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_1;
+					}
+					break;
+				}
+			case "busi_belt_hit_3":
+			{
+				if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_2)
+				{
+					cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_3;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_2;
+				}
+				break;
+			}
+			
+			case "busi_belt_hit_4":
+			{
+				if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_3)
+				{
+					cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_4;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_3;
+				}
+				break;
+			}
+			
+			case "busi_belt_hit_5":
+			{
+				if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_4)
+				{
+					cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_5;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_4;
+				}
+				break;
+			}
+			
+			case "pas_belt_hit_1":
+			{
+				if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_6)
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_7;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_6;
+				}
+				break;
+			}
+
+
+			case "pas_belt_hit_2":
+			{
+				if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_3)
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_6;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_3;
+				}
+				break;
+			}
+			
+			case "pas_belt_hit_3":
 			{
 				if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_1)
 				{
-					cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_2;
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_1;
 				}
 				else
 				{
@@ -77,233 +157,155 @@ public class field_mar_player : MonoBehaviour {
 				}
 				break;
 			}
-		case "busi_belt_hit_3":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_2)
+
+			case "pas_belt_hit_4":
 			{
-				cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_3;
+				if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_1)
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_2;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_1;
+				}
+				break;
 			}
-			else
+
+			case "pas_belt_hit_5":
 			{
-				cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_2;
+				if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_3)
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_5;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_3;
+				}
+				break;
 			}
-			break;
-		}
-		
-		case "busi_belt_hit_4":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_3)
+
+			case "pas_belt_hit_6":
 			{
-				cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_4;
+				if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_2)
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_3;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_2;
+				}
+				break;
 			}
-			else
+
+			case "kit_belt_hit_1":
 			{
-				cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_3;
+				if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_7)
+				{
+					cameraNum=field_mar.CAMERA_NUM.KIT_CAMERA_2;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_7;
+				}
+				break;
 			}
-			break;
-		}
-		
-		case "busi_belt_hit_5":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_4)
+
+			case "kit_belt_hit_2":
 			{
-				cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_5;
+				if(cameraNum==field_mar.CAMERA_NUM.KIT_CAMERA_2)
+				{
+					cameraNum=field_mar.CAMERA_NUM.KIT_CAMERA_1;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.KIT_CAMERA_2;
+				}
+				break;
 			}
-			else
+
+			case "vip_belt_hit_2":
 			{
-				cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_4;
+				if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_5)
+				{
+					cameraNum=field_mar.CAMERA_NUM.VIP_CAMERA_1;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_5;
+				}
+				break;
 			}
-			break;
-		}
-		
-		case "pas_belt_hit_1":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_6)
+
+			case "vip_belt_hit_1":
 			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_7;
+				if(cameraNum==field_mar.CAMERA_NUM.VIP_CAMERA_1)
+				{
+					cameraNum=field_mar.CAMERA_NUM.VIP_CAMERA_2;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.VIP_CAMERA_1;
+				}
+				break;
 			}
-			else
+
+			case "ware_belt_hit_1":
 			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_6;
+				if(cameraNum==field_mar.CAMERA_NUM.VIP_CAMERA_2)
+				{
+					cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_4;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.VIP_CAMERA_2;
+				}
+				break;
 			}
-			break;
-		}
+			
+			case "ware_belt_hit_2":
+			{
+				if(cameraNum==field_mar.CAMERA_NUM.WARE_CAMERA_4)
+				{
+					cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_3;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_4;
+				}
+				break;
+			}
+			
+			case "ware_belt_hit_3":
+			{
+				if(cameraNum==field_mar.CAMERA_NUM.WARE_CAMERA_3)
+				{
+					cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_2;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_3;
+				}
+				break;
+			}
+			
+			case "ware_belt_hit_4":
+			{
+				if(cameraNum==field_mar.CAMERA_NUM.WARE_CAMERA_2)
+				{
+					cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_1;
+				}
+				else
+				{
+					cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_2;
+				}
+				break;
+			}
 
 
-		case "pas_belt_hit_2":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_3)
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_6;
 			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_3;
-			}
-			break;
-		}
-		
-		case "pas_belt_hit_3":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.BUSI_CAMERA_1)
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_1;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.BUSI_CAMERA_1;
-			}
-			break;
-		}
 
-		case "pas_belt_hit_4":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_1)
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_2;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_1;
-			}
-			break;
+			GameObject.Find("Camera Manager").GetComponent<field_mar>().ChangeCam(cameraNum);
+			cameraBackUp = collider;
 		}
-
-		case "pas_belt_hit_5":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_3)
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_5;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_3;
-			}
-			break;
-		}
-
-		case "pas_belt_hit_6":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_2)
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_3;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_2;
-			}
-			break;
-		}
-
-		case "kit_belt_hit_1":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_7)
-			{
-				cameraNum=field_mar.CAMERA_NUM.KIT_CAMERA_2;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_7;
-			}
-			break;
-		}
-
-		case "kit_belt_hit_2":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.KIT_CAMERA_2)
-			{
-				cameraNum=field_mar.CAMERA_NUM.KIT_CAMERA_1;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.KIT_CAMERA_2;
-			}
-			break;
-		}
-
-		case "vip_belt_hit_2":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.PAS_CAMERA_5)
-			{
-				cameraNum=field_mar.CAMERA_NUM.VIP_CAMERA_1;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.PAS_CAMERA_5;
-			}
-			break;
-		}
-
-		case "vip_belt_hit_1":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.VIP_CAMERA_1)
-			{
-				cameraNum=field_mar.CAMERA_NUM.VIP_CAMERA_2;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.VIP_CAMERA_1;
-			}
-			break;
-		}
-
-		case "ware_belt_hit_1":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.VIP_CAMERA_2)
-			{
-				cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_4;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.VIP_CAMERA_2;
-			}
-			break;
-		}
-		
-		case "ware_belt_hit_2":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.WARE_CAMERA_4)
-			{
-				cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_3;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_4;
-			}
-			break;
-		}
-		
-		case "ware_belt_hit_3":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.WARE_CAMERA_3)
-			{
-				cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_2;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_3;
-			}
-			break;
-		}
-		
-		case "ware_belt_hit_4":
-		{
-			if(cameraNum==field_mar.CAMERA_NUM.WARE_CAMERA_2)
-			{
-				cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_1;
-			}
-			else
-			{
-				cameraNum=field_mar.CAMERA_NUM.WARE_CAMERA_2;
-			}
-			break;
-		}
-
-
-		}
-
-		GameObject.Find("Camera Manager").GetComponent<field_mar>().ChangeCam(cameraNum);
-		cameraBackUp = collider;
-		
 	}
 }

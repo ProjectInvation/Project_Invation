@@ -5,9 +5,28 @@ using System;
 
 public class NetworkMenu : MonoBehaviour 
 {
-	public GameObject prefab;
-
+	public GameObject[] prefab= new GameObject[4];
 	public int now_disp_mode;
+
+	public int Now_disp_mode {
+		get {
+			return now_disp_mode;
+		}
+		set {
+			now_disp_mode = value;
+		}
+	}
+
+	public int playerID;
+
+	public int PlayerID {
+		get {
+			return playerID;
+		}
+		set {
+			playerID = value;
+		}
+	}
 
 	private const int DISP_MODE_WAIT = 0;
 	private const int DISP_MODE_HOST = 1;
@@ -24,6 +43,7 @@ public class NetworkMenu : MonoBehaviour
 	
 	private void Start ()
 	{
+		playerID=0;
 		now_disp_mode = DISP_MODE_WAIT;
 		string host_name = Dns.GetHostName();
 		IPAddress[] address = Dns.GetHostAddresses(host_name);
@@ -40,6 +60,11 @@ public class NetworkMenu : MonoBehaviour
 
 	void Update()
 	{
+		if(TextOut.IsChange)
+		{
+			now_disp_mode=DISP_MODE_WAIT;
+			TextOut.IsChange=false;
+		}
 		// update disp mode
 		TextOut.NowDispMode = now_disp_mode;
 		TextOut.ConnectionIp = connection_ip;
@@ -49,38 +74,40 @@ public class NetworkMenu : MonoBehaviour
 	// player create
 	private void CreatePlayer()
 	{
-		Network.Instantiate (prefab,  new Vector3 (Network.connections.Length * 2,5,0), Quaternion.identity, 0);
+		for(int i=1;i<5;i++)
+		{
+			if(!GameObject.Find("Player_"+i+"(Clone)"))
+			{
+				playerID=i;
+				Network.Instantiate (prefab[i-1],  new Vector3 (Network.connections.Length * 2,5,0), Quaternion.identity, 0);
+				break;
+			}
+		}
 	}
 	
 	private void OnServerInitialized()
 	{
-		// The server has initialzed
-		Debug.Log ("Server initialized and ready");
 		connected = true;
 		now_disp_mode = DISP_MODE_HOST;
-		CreatePlayer ();
+		CreatePlayer();
 	}
 	
 	private void OnConnectedToServer()
 	{
 		// A client has jast connected
-		Debug.Log ("Connected to server");
 		connected = true;
 		now_disp_mode = DISP_MODE_CLIENT;
-		CreatePlayer ();
+		StartCoroutine("createCliantPlayer");
 	}
 	
 	private void OnPlayerConnected(NetworkPlayer player)
 	{
-		Debug.Log ("Connected from" + player.ipAddress + ":" + player.port);
 		connected = true;
 	}
 	
 	
 	private void OnPlayerDisconnected(NetworkPlayer player)
 	{
-		//
-		Debug.Log ("Clean up after player" + player);
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects (player);
 	}
@@ -90,12 +117,6 @@ public class NetworkMenu : MonoBehaviour
 		// The connection has been lost, or disconnected
 		connected = false;
 		now_disp_mode = DISP_MODE_WAIT;
-		if (Network.isServer) 
-		{Debug.Log ("Local server connection disconnected");}
-		else if(info == NetworkDisconnection.LostConnection)
-		{Debug.Log ("Lost connection to the server");}
-		else
-		{Debug.Log ("Successfully dicnnected from the server");}
 	}
 	
 	private void OnFailedToConnect(NetworkConnectionError error)
@@ -106,52 +127,36 @@ public class NetworkMenu : MonoBehaviour
 
 	private void OnGUI()
 	{
+		GUILayout.Label ("あなたは "+playerID+"Pです" );
 		switch(now_disp_mode)
 		{
 		case DISP_MODE_WAIT:
 			if (!connected) 
 			{
-				GUILayout.Label ("Server: " + Network.isServer.ToString());
-				GUILayout.Label ("Client: " + Network.isClient.ToString());
+				//GUILayout.Label ("Server: " + Network.isServer.ToString());
+				//GUILayout.Label ("Client: " + Network.isClient.ToString());
 				connection_ip = GUILayout.TextField (connection_ip);
 				int.TryParse (GUILayout.TextField (port_number.ToString ()), out port_number);
 
-				if (GUILayout.Button ("Connect")) {
+				if (GUILayout.Button ("ホストに接続")) {
 					Network.Connect (connection_ip, port_number);
-					CreatePlayer ();
 				}
 				if(is_host == true)
 				{
-					if (GUILayout.Button ("Host"))
+					if (GUILayout.Button ("ホストになる"))
 					{
 						Network.InitializeServer (play_num, port_number, !Network.HavePublicAddress());
 					}
 				}
 			}
 			break;
-		//case DISP_MODE_HOST:
-			//GUILayout.Label ("Server: " + Network.isServer.ToString());
-			//GUILayout.Label ("Client: " + Network.isClient.ToString());
-			//GUILayout.Label ("Connections: " + Network.connections.Length.ToString ()+1);
-			//GUILayout.Label ("Is Host");
-			//GUILayout.Label ("ip addreass :" + connection_ip.ToString());
-			//GUILayout.Label ("port :" + port_number.ToString());
-			//if (GUILayout.Button ("Disconnect")) {
-			//	Network.Destroy(GameObject.Find("PlayerPrefab(Clone)").gameObject);
-			//	Network.Disconnect();
-			//}
-		//	break;
-	//	case DISP_MODE_CLIENT:
-			//GUILayout.Label ("Server: " + Network.isServer.ToString());
-			//GUILayout.Label ("Client: " + Network.isClient.ToString());
-			//GUILayout.Label ("Connections: " + Network.connections.Length.ToString ());
-			//GUILayout.Label ("Is Client ");
-			//if (GUILayout.Button ("Disconnect")) {
-			//	Network.Destroy(GameObject.Find("PlayerPrefab(Clone)").gameObject);
-			//	Network.Disconnect();
-			//}
-		//	break;
 		}
+	}
+
+	IEnumerator createCliantPlayer()
+	{
+		yield return new WaitForSeconds(1);
+		CreatePlayer();
 	}
 }
 
