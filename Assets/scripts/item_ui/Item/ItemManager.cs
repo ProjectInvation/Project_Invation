@@ -39,9 +39,9 @@ public class ItemManager : MonoBehaviour
 
 	void OnGUI()
 	{
-		for(int i=0;i<ITEM_MAX;i++)
-		{
-			GUI.Label (new Rect (0,   i*30, 100, 30), HaveItemList[i]);
-		}
+	//	for(int i=0;i<ITEM_MAX;i++)
+	//	{
+	//		GUI.Label (new Rect (0,   i*30, 100, 30), HaveItemList[i]);
+	//	}
 	}
 }
