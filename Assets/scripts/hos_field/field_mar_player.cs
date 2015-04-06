@@ -19,22 +19,6 @@ public class field_mar_player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetKey(KeyCode.W))
-		{
-			playerObj.transform.Translate(0,0,0.3f);
-		}	
-		if(Input.GetKey(KeyCode.S))
-		{
-			playerObj.transform.Translate(0,0,-0.3f);
-		}
-		if(Input.GetKey(KeyCode.A))
-		{
-			playerObj.transform.Rotate(0,-5.0f,0);
-		}
-		if(Input.GetKey(KeyCode.D))
-		{
-			playerObj.transform.Rotate(0,5.0f,0);
-		}
 
 	}
 

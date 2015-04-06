@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerCharacter : MonoBehaviour {
+public class Player4Character : MonoBehaviour {
 	public int ObjNum;						//Enemy Object Num
 
 	private Vector3 PlayerRot;				//Player Rotation Speed
@@ -32,7 +32,10 @@ public class PlayerCharacter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GetComponent<NetworkView> ().RPC ("PlayerRpc", RPCMode.All);
+		if(GameObject.Find("NetworkMenu").GetComponent<NetworkMenu>().PlayerID==4)
+		{
+			GetComponent<NetworkView> ().RPC ("PlayerRpc", RPCMode.All);
+		}
 	}
 
 	[RPC]
@@ -50,34 +53,46 @@ public class PlayerCharacter : MonoBehaviour {
 
 		if (GetComponent<NetworkView> ().isMine) 
 		{
-		//Input key move and rot 
-			if (Input.GetKey (KeyCode.W) || Input.GetAxisRaw ("Vertical") < 0) {
+			//Input key move and rot 
+			if (Input.GetKey (KeyCode.W) || Input.GetAxisRaw ("Vertical") < 0) 
+			{
 				//PlayerPosDest += (PlayerFront / MoveSpeed);
 				this.transform.Translate (0, 0, MoveSpeed);
-			} else if (Input.GetKey (KeyCode.S) || Input.GetAxisRaw ("Vertical") > 0) {
+			} 
+
+			else if (Input.GetKey (KeyCode.S) || Input.GetAxisRaw ("Vertical") > 0) 
+			{
 				//PlayerPosDest += -(PlayerFront / MoveSpeed);
 				this.transform.Translate (0, 0, -MoveSpeed);
 			}
 		
-			if (Input.GetKey (KeyCode.A) || Input.GetAxisRaw ("Horizontal") < 0) {
+			if (Input.GetKey (KeyCode.A) || Input.GetAxisRaw ("Horizontal") < 0)
+			{
 				PlayerRot.y -= 0.1f;
-				if (PlayerRot.y <= -this.Maxspeed) {
+				if (PlayerRot.y <= -this.Maxspeed)
+				{
 					PlayerRot.y = -this.Maxspeed;
 				}
-			} else if (Input.GetKey (KeyCode.D) || Input.GetAxisRaw ("Horizontal") > 0) {
+			}
+			else if (Input.GetKey (KeyCode.D) || Input.GetAxisRaw ("Horizontal") > 0) {
 				PlayerRot.y += 0.1f;
-				if (PlayerRot.y >= this.Maxspeed) {
+				if (PlayerRot.y >= this.Maxspeed) 
+				{
 					PlayerRot.y = this.Maxspeed;
 				}
-			} else {
+			} 
+			else 
+			{
 				PlayerRot.y = 0;
 			}
 		
 			//Quick turn
-			if (Input.GetKeyDown (KeyCode.Q) /*|| Input.GetButtonDown("L2")*/) {
+			if (Input.GetKeyDown (KeyCode.Q) /*|| Input.GetButtonDown("L2")*/)
+			{
 				Count = TurnCount;
 			}
-			if (Count > 0) {
+			if (Count > 0)
+			{
 				Count--;
 				PlayerRot.y += TurnRot;
 			}

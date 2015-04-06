@@ -9,7 +9,7 @@ public class DisplayTextManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		DisplayText.text="";
+
 	}
 	
 	// Update is called once per frame
