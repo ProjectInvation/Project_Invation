@@ -46,10 +46,18 @@ public class NetworkMenu : MonoBehaviour
 		playerID=0;
 		now_disp_mode = DISP_MODE_WAIT;
 		string host_name = Dns.GetHostName();
-		IPAddress[] address = Dns.GetHostAddresses(host_name);
-		foreach (IPAddress ip in address)
+		if(host_name!=null)
 		{
-			connection_ip = ip.ToString();
+			IPAddress[] address = Dns.GetHostAddresses(host_name);
+			foreach (IPAddress ip in address)
+			{
+				connection_ip = ip.ToString();
+			}
+		}
+
+		else
+		{
+			connection_ip="取得エラー:cmdからipアドレスを調べてください";
 		}
 
 		if (Network.isServer == true)
