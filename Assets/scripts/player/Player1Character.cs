@@ -5,7 +5,7 @@ public class Player1Character : MonoBehaviour {
 	public int ObjNum;						//Enemy Object Num
 
 	private Vector3 PlayerRot;				//Player Rotation Speed
-	public float MoveSpeed = 0.05f; 		//Max Move Speed
+	public float MoveSpeed; 		//Max Move Speed
 	private Vector3 Axis;					//Enemy to Player Distance And Axis
 
 	public readonly float Maxspeed = 3.0f;	//Max Rotation Speed;
@@ -125,9 +125,9 @@ public class Player1Character : MonoBehaviour {
 					this.transform.forward += (Axis - this.transform.forward) * 0.2f;
 				}
 			
-				MoveSpeed = 0.03f;
+				//MoveSpeed = 0.03f;
 			} else {
-				MoveSpeed = 0.03f;
+				//MoveSpeed = 0.03f;
 			}
 		
 		}

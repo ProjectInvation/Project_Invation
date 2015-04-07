@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class field_mar_player : MonoBehaviour {
+public class field_mar_player : MonoBehaviour 
+{
 
-	GameObject playerObj;
 	Collider cameraBackUp;
 
 	field_mar.CAMERA_NUM cameraNum;
@@ -12,7 +12,7 @@ public class field_mar_player : MonoBehaviour {
 	void Start ()
 	{
 		cameraBackUp = null;
-		playerObj=GameObject.Find("Army-Final");
+
 		cameraNum = field_mar.CAMERA_NUM.BUSI_CAMERA_1;
 	}
 	
@@ -24,7 +24,7 @@ public class field_mar_player : MonoBehaviour {
 
 	void OnTriggerExit(Collider collider)
 	{
-		if(this.name=="Player_"+GameObject.Find("NetworkMenu").GetComponent<NetworkMenu>().PlayerID+"(Clone)")
+		if(this.name=="Camera_Belt_Hit")
 		{
 			if (collider.tag != ("busi_belt_hit_1") && 
 			    collider.tag != ("busi_belt_hit_2") && 
